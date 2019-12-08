@@ -7,7 +7,7 @@ export default class App extends Component{
     word : "",
     traduction : "",
     difficult : 0,
-    score: 19,
+    score: 10,
     placeholderHelp: "",
     textInput: "",
     good: false,
@@ -15,7 +15,7 @@ export default class App extends Component{
     winner:0,
     looser: 0,
   }
-  
+
   componentDidMount(){
     this.getWord();
   }
