@@ -14,6 +14,7 @@ export default class App extends Component{
     err: false,
     winner:0,
     looser: 0,
+    startGame:false,
   }
 
   componentDidMount(){
@@ -87,17 +88,97 @@ export default class App extends Component{
       })
     }
   }
+  exit(){
+    this.setState({
+      word : "",
+      traduction : "",
+      difficult : 0,
+      score: 10,
+      placeholderHelp: "",
+      textInput: "",
+      good: false,
+      err: false,
+      winner:0,
+      looser: 0,
+      startGame:false,
+    })
+  }
+
+  replay(){
+    this.setState({
+      word : "",
+      traduction : "",
+      difficult : 0,
+      score: 10,
+      placeholderHelp: "",
+      textInput: "",
+      good: false,
+      err: false,
+      winner:0,
+      looser: 0,
+    }, () => {
+      this.getWord();
+    })
+  }
+
+  startGame(){
+    
+    this.setState({
+      startGame: true
+    }, () =>{
+      this.getWord();
+    })
+  }
 
   render(){
     return (
+      this.state.startGame === false ?
+      <div className="App-header">
+      <div class="card text-white bg-primary mb-3" style={{maxWidth: "100rem"}}>
+        <div class="card-header text-center"><h4>Bienvenue sur MadTranslator!</h4></div>
+        <div class="card-body text-center">
+          <h5 class="card-title mt-3">Des mots en francais te sont proposé arrivera tu a tous les traduire ?</h5>
+          <button type="button" class="btn btn-success mt-4 mb-2" style={{ fontSize:18 }} onClick={this.startGame.bind(this)}>C'est parti !</button>         
+        </div>
+      </div>
+      </div>
+      :
       this.state.winner === 1 ?
       <div className="App-header">
-        <p>WINNER</p>
+              <div className="App-header">
+        <div class="card text-white bg-primary mb-3" style={{maxWidth: "100rem"}}>
+          <div class="card-header text-center"><h4>Fin de la partie !</h4></div>
+          <div class="card-body text-center">
+            <h5 class="card-title mt-3">Tu as gagné, ton score a atteint 20, félicitations  !</h5>
+            <div className="row mt-4 mb-2">
+              <div className="col">
+                <button type="button" class="btn btn-danger mt-3 mb-2" style={{ fontSize:18 }} onClick={this.exit.bind(this)}>Quitter</button>         
+              </div>
+              <div className="col">
+                <button type="button" class="btn btn-success mt-3 mb-2" style={{ fontSize:18 }} onClick={this.replay.bind(this)}>Rejouer</button>         
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
         </div>
       :
       this.state.looser === 1 ?
       <div className="App-header">
-        <p>LOOSER</p>
+        <div class="card text-white bg-primary mb-3" style={{maxWidth: "100rem"}}>
+          <div class="card-header text-center"><h4>Fin de la partie !</h4></div>
+          <div class="card-body text-center">
+            <h5 class="card-title mt-3">Tu as perdu, ton score a atteint 0, bien essayé !</h5>
+            <div className="row mt-4 mb-2">
+              <div className="col">
+                <button type="button" class="btn btn-danger mt-3 mb-2" style={{ fontSize:18 }} onClick={this.exit.bind(this)}>Quitter</button>         
+              </div>
+              <div className="col">
+                <button type="button" class="btn btn-success mt-3 mb-2" style={{ fontSize:18 }} onClick={this.replay.bind(this)}>Rejouer</button>         
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       :
         <div className="App-header">
