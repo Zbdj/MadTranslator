@@ -22,10 +22,27 @@ MongoClient.connect("mongodb+srv://Zbdj:Rw0pM71iWMGy1r7T@cluster0-zed6f.mongodb.
   var RandomWord = "";
   var Note = 5;
 
-    app.get('/', function (req, res) {
-        
+    app.get('/:lastScore', function (req, res) {
+        var win = "";
+
+        if(req.params.lastScore === "win"){
+          win = true
+        }else if(req.params.lastScore === "startGame"){
+          Note = 5
+        }
+        else{
+          win = false
+        }
+
         dbo.collection("MadWord").find({difficulty : Note}).toArray(function(err,result) {
             //console.log(result)
+            if(win === true && Note !== 10){
+                Note = Note +1
+            }
+            else if(win === false && Note !== 1){
+                Note = Note  - 1
+            }
+
             RandomWord = result[Math.floor(Math.random() * result.length)].word;
             //console.log(RandomWord)
 
