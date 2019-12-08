@@ -15,6 +15,7 @@ export default class App extends Component{
     winner:0,
     looser: 0,
   }
+  
   componentDidMount(){
     this.getWord();
   }
