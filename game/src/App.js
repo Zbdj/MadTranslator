@@ -135,9 +135,9 @@ export default class App extends Component{
       this.state.startGame === false ?
       <div className="App-header">
       <div class="card text-white bg-primary mb-3" style={{maxWidth: "100rem"}}>
-        <div class="card-header text-center"><h4>Bienvenue sur MadTranslator!</h4></div>
+        <div class="card-header text-center"><h4>Bienvenue sur MadTranslator !</h4></div>
         <div class="card-body text-center">
-          <h5 class="card-title mt-3">Des mots en francais te sont proposé arrivera tu a tous les traduire ?</h5>
+          <h5 class="card-title mt-3">Des mots en francais te sont proposés arriveras-tu à tous les traduire ?</h5>
           <button type="button" class="btn btn-success mt-4 mb-2" style={{ fontSize:18 }} onClick={this.startGame.bind(this)}>C'est parti !</button>         
         </div>
       </div>
